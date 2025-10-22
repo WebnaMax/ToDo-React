@@ -13,8 +13,8 @@ export const Header = () => {
             <div className={cl.container}>
                 {/* <a href="/" className={cl.link}>Home</a>
                 <a href="/todo" className={cl.link}>ToDo</a> */}
-                <NavLink to="/" className={getActiveClass}>Home</NavLink>
-                <NavLink to="/todo" className={getActiveClass}>ToDo</NavLink>
+                <NavLink to="/" className={getActiveClass}>ToDo</NavLink>
+                <NavLink to="/list" className={getActiveClass}>List</NavLink>
             </div>
         </header>
     )

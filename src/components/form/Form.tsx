@@ -7,7 +7,9 @@ export const Form = (props: { createNewToDo: Function }) => {
 
     // let createText = '';
 
-    const formSubmit = () => {
+    const formSubmit = (event: React.SyntheticEvent) => {
+        event.preventDefault();
+
         if (text) {
             props.createNewToDo(text);
             setText('');

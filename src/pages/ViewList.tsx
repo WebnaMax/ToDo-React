@@ -1,18 +1,20 @@
-import { useSelector } from "react-redux";
-import { ListItem } from "../components/ListItem/ListItem"
-import { ToDo } from "../models/ToDoItem"
-import { RootState } from "../store";
+import React from 'react';
+import { TodoItem } from '../models/todo-item.interface';
+import { ListItem } from '../components/ListItem/ListItem';
+import { useSelector } from 'react-redux';
+import { RootState } from '../store';
 
 export const ViewList = () => {
-    const todoList = useSelector((state: RootState) => state.todoList.todos);
+	
+	const todoList = useSelector(
+		(state: RootState) => state.todoList.todos
+	);
 
-    return (
-        <div className="container">
-            {
-                todoList.map((todo: ToDo, idx) => {
-                    return <ListItem key={idx} todo={todo} />
-                })
-            }
-        </div>
-    )
-}
+	return (
+		<div className='container'>
+			{todoList.map((todo: TodoItem) => {
+				return <ListItem todo={todo} key={todo.id} />;
+			})}
+		</div>
+	);
+};

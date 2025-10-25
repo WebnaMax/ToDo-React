@@ -1,21 +1,32 @@
-import { NavLink } from 'react-router'
-// import { HomePage } from '../../pages/HomePage'
-// import { ToDoListPage } from '../../pages/ToDoListPage'
-import cl from './header.module.scss'
+import { useDispatch, useSelector } from 'react-redux';
+import {
+	HeaderContainer,
+	StyledHeader,
+	StyledNavLink,
+	ThemeToggleButton,
+} from './Header.styled';
+import { toggleThemeAction } from '../../feature/themeList';
+import { RootState } from '../../store';
 
 export const Header = () => {
-    const getActiveClass = ({ isActive }: { isActive: boolean }): string => {
-        return isActive ? `${cl.active} ${cl.link}` : cl.link;
-    }
+	const dispatch = useDispatch();
+	const themeName = useSelector(
+		(state: RootState) => state.themeList.theme.name
+	);
 
-    return (
-        <header className={cl.header}>
-            <div className={cl.container}>
-                {/* <a href="/" className={cl.link}>Home</a>
-                <a href="/todo" className={cl.link}>ToDo</a> */}
-                <NavLink to="/" className={getActiveClass}>ToDo</NavLink>
-                <NavLink to="/list" className={getActiveClass}>List</NavLink>
-            </div>
-        </header>
-    )
-}
+	return (
+		<StyledHeader>
+			<HeaderContainer>
+				<StyledNavLink to='/'>ToDo</StyledNavLink>
+				<StyledNavLink to='/list'>List</StyledNavLink>
+				<div>
+					<ThemeToggleButton
+						onClick={() => dispatch(toggleThemeAction())}
+					>
+						{themeName === 'light' ? '🌙' : '🌞'}
+					</ThemeToggleButton>
+				</div>
+			</HeaderContainer>
+		</StyledHeader>
+	);
+};

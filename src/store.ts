@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 import todoReducer from './feature/todoList';
+import themeReducer from './feature/themeList';
 
 // Define RootState before store to avoid circular dependency issues
 export type RootState = {
     todoList: ReturnType<typeof todoReducer>;
+    themeList: ReturnType<typeof themeReducer>;
 };
 
 // Save state to localStorage
@@ -32,6 +34,7 @@ const loadFromLocalStorage = (): RootState | undefined => {
 export const store = configureStore({
     reducer: {
         todoList: todoReducer,
+        themeList: themeReducer,
     },
     preloadedState: loadFromLocalStorage(),
 });
